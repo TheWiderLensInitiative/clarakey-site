@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClaraKey privacy</title>
+<meta name="description" content="Exactly where ClaraKey keeps your data. No servers, no accounts.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<style>
+@font-face{font-family:Montserrat;src:url(/assets/montserrat.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--accent:#5DC2FE;--bg:#08111E;--card:#122238;--line:#1E3350;--text:#D3DEE8;--muted:#8FA3B6;--ink:#F2F6F8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+nav{border-bottom:1px solid var(--line)} nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{font-family:Montserrat,sans-serif;font-weight:800;font-size:1.15rem;color:var(--ink);text-decoration:none;display:flex;gap:9px;align-items:center}
+.brand img{height:30px;width:30px;border-radius:8px} .brand b{color:var(--accent)}
+nav a.back{color:var(--accent);font-weight:600;text-decoration:none;font-size:.95rem}
+main{padding:48px 0 64px}
+h1{font-family:Montserrat,sans-serif;color:var(--ink);font-size:clamp(1.8rem,5vw,2.4rem);letter-spacing:-.02em;margin-bottom:10px}
+h2{font-family:Montserrat,sans-serif;color:var(--ink);font-size:1.25rem;margin:34px 0 10px}
+p{margin-bottom:12px} ul{padding-left:22px;margin-bottom:12px} li{margin-bottom:6px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 6px;word-break:break-word;color:var(--ink)}
+strong{color:var(--ink)}
+a.link{color:var(--accent);word-break:break-word}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:.88rem}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="/"><img src="/assets/mark.png" alt=""><span>CLARA <b>KEY</b></span></a><a class="back" href="/">← Back to ClaraKey</a></div></nav>
+<main class="wrap">
+<h1>Privacy</h1>
+<p>ClaraKey has no servers, no accounts, no telemetry and no analytics. It never connects to the internet. This page
+lists every place your data goes.</p>
+<h2>On your drive</h2>
+<p>Everything ClaraKey stores lives in the <code>ClaraKey</code> folder you run it from (usually on your USB drive):</p>
+<ul>
+<li><code>vault/clarakey.vault</code>: your vault, encrypted with a key derived from your master password (Argon2id, then
+  AES-256-GCM). Entries, titles, notes, files, timestamps and settings are all inside the encryption.</li>
+<li><code>vault/.previous.vault</code>: the encrypted previous version, so a failed save can't lose your vault.</li>
+<li><code>backups/</code>: encrypted backups you create.</li>
+</ul>
+<p>Without your master password none of this can be read, including by us. There is no password recovery and no
+backdoor: if you lose the master password, the vault can't be opened.</p>
+<h2>On the computer you use it on</h2>
+<ul>
+<li>ClaraKey keeps decrypted entries in memory only while the vault is unlocked, and locks itself after a period of
+  inactivity (5 minutes by default).</li>
+<li>When you copy a secret, it goes to the system clipboard and ClaraKey clears it again after a timeout (30 seconds
+  by default), if nothing else was copied since. Clipboard managers and the apps you paste into may keep their own
+  copies; ClaraKey can't remove those.</li>
+<li>Exports and "Save file…" write exactly what you chose, unencrypted, to the place you chose, after a confirmation.</li>
+<li>The optional one-click icon (<code>add-to-this-pc.sh</code>) puts a small launcher, a desktop entry and an icon on the
+  computer. Never the vault.</li>
+</ul>
+<h2>Network</h2>
+<p>None. ClaraKey makes no network requests: no updates check, no time server, no crash reports. Authenticator codes
+use your computer's clock.</p>
+<h2>Contact</h2>
+<p>Questions: <a class="link" href="mailto:clarakey@thewiderlens.info">clarakey@thewiderlens.info</a> · Security issues: see <a class="link" href="https://github.com/TheWiderLensInitiative/clarakey/blob/main/SECURITY.md" rel="noopener">SECURITY.md</a></p>
+</main>
+<footer><div class="wrap">This page matches <a class="link" href="https://github.com/TheWiderLensInitiative/clarakey/blob/main/docs/PRIVACY.md">docs/PRIVACY.md</a> in the ClaraKey repository. Created by DevIgnite × The Wider Lens Initiative Project.</div></footer>
+</body>
+</html>
